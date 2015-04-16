@@ -8,10 +8,10 @@ import java.awt.*;
  * @author petmeu239
  */
 public class Fönster extends Applet implements Runnable {
-    
+    int width=16*32, height=16*32;
         @Override
         public void init(){
-            
+            this.setSize(width,height);
         }
         @Override
         public void paint(Graphics g){
