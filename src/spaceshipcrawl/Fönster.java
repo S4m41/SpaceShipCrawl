@@ -9,22 +9,24 @@ import java.awt.*;
  */
 public class Fönster extends Applet implements Runnable {
 
-    int width=16*32, height=16*32;
+    int width = 16 * 32, height = 16 * 32;
 
     private boolean running = true;
     private boolean paused = false;
-    
 
-        public void init(){
-            this.setSize(width,height);
-        }
-        @Override
-        public void paint(Graphics g){
-            
-        }
-        public void update(double delta){
-            
-        }
+    @Override
+    public void init() {
+        this.setSize(width, height);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+
+    }
+
+    public void update(double delta) {
+
+    }
 
     @Override
     public void run() {
@@ -53,18 +55,16 @@ public class Fönster extends Applet implements Runnable {
 
             repaint();
 
-            long l = (lastLoopTime  + OPTIMAL_TIME);
+            long l = (lastLoopTime + OPTIMAL_TIME);
             if (l < 0) {
 
             } else {
-                while (System.nanoTime()-l<0 ) {
+                while (System.nanoTime() - l < 0) {
                     Thread.yield();
                 }
 
             }
         }
     }
-                
-    
-    
+
 }
