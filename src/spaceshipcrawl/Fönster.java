@@ -8,6 +8,7 @@ import java.awt.*;
  * @author petmeu239
  */
 public class Fönster extends Applet implements Runnable {
+    Controller c = new Controller();
 
     int width = 16 * 32, height = 16 * 32;
 
@@ -21,11 +22,11 @@ public class Fönster extends Applet implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-
+        c.paint(g);
     }
 
     public void update(double delta) {
-
+        c.update(delta);
     }
 
     @Override
