@@ -1,4 +1,4 @@
-nbproject/project.xml
+﻿nbproject/project.xml
 build.xml
 nbproject/genfiles.properties
 nbproject/project.properties
@@ -11,7 +11,4 @@ manifest.mf
 .classpath
 .settings/org.eclipse.core.resources.prefs
 *.class
-bin/img/golv1.png
-bin/img/vägg1.png
-bin/img/teleport1.png
-bin/java.policy.applet
+bin/
