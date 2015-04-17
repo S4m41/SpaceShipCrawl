@@ -3,11 +3,14 @@ package com.SoridanSamai.spaceShipCrawl.world;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 import com.SoridanSamai.spaceShipCrawl.Reference;
+
+import eventsAndExeptions.ImageLoadingExeption;
 
 /**
  * 
@@ -53,15 +56,21 @@ public class Tile {
 		return Tile.depiction.get(type);
 		
 	}
-	public static void initImages() {
+	public static void initImages(){
 		for (int i = 0 ; i<ASSIGNED_VALUES.length||i<Reference.TILE_PICTURES.length ;i++) {
 			int typeq = ASSIGNED_VALUES[i];
 			File picture = Reference.TILE_PICTURES[i];
-			try {
-				depiction.add(typeq, ImageIO.read(picture));
-			} catch (Exception e) {
-				System.err.append("ERROR LOADING IMAGES");
-			}
+			
+				BufferedImage im;
+				try {
+					im = ImageIO.read(picture);
+					depiction.add(typeq, im );
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			
 		}
 	}
 }

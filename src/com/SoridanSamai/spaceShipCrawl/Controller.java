@@ -8,6 +8,8 @@ import com.SoridanSamai.spaceShipCrawl.world.Deck;
 import com.SoridanSamai.spaceShipCrawl.world.Ship;
 import com.SoridanSamai.spaceShipCrawl.world.Tile;
 
+import eventsAndExeptions.ImageLoadingExeption;
+
 /**
  *
  * @author simlin329
@@ -17,7 +19,7 @@ public class Controller {
     private boolean shouldMove = true;
     Ship stage =  new Ship();
     UI ui = new UI();
-    public Controller() {
+    public Controller(){
     	Tile.initImages();
 		Deck add = new Deck(16, 16);
 		add.basicFlooring();

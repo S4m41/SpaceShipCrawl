@@ -32,8 +32,14 @@ public class Deck {
 			for (int y = 0; y < schematic[x].length; y++) {
 				Tile t = schematic[x][y];
 				AffineTransform xform = new AffineTransform();
+				xform.translate(x*32, y*32);
 				
-				g.drawImage(t.getImage(), xform, null);
+				try {
+					g.drawImage(t.getImage(), xform, null);
+				} catch (java.lang.NullPointerException e) {
+					System.exit(-1);
+				}
+				
 			}
 		}
 	}
