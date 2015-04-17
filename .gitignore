@@ -14,3 +14,4 @@ manifest.mf
 bin/img/golv1.png
 bin/img/vägg1.png
 bin/img/teleport1.png
+bin/java.policy.applet

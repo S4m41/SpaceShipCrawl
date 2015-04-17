@@ -8,7 +8,12 @@ import java.awt.*;
  * @author petmeu239
  */
 public class Fönster extends Applet implements Runnable {
-    Controller c = new Controller();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5932246779196752754L;
+
+	Controller c = new Controller();
 
     int width = 16 * 32, height = 16 * 32;
 
@@ -18,6 +23,9 @@ public class Fönster extends Applet implements Runnable {
     @Override
     public void init() {
         this.setSize(width, height);
+        this.setVisible(true);
+        Thread t = new Thread(this);
+        t.start();
     }
 
     @Override
