@@ -30,7 +30,8 @@ public class Fönster extends Applet implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-        c.paint(g);
+    	
+        c.paint((Graphics2D) g);
     }
 
     public void update(double delta) {
