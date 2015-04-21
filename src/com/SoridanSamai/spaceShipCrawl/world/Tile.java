@@ -1,5 +1,7 @@
 package com.SoridanSamai.spaceShipCrawl.world;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import com.SoridanSamai.spaceShipCrawl.Reference;
+//import com.SoridanSamai.spaceShipCrawl.Reference;
 
 /**
  * 
@@ -54,14 +56,19 @@ public class Tile {
 		
 	}
 	public static void initImages() {
-		for (int i = 0 ; i<ASSIGNED_VALUES.length||i<Reference.TILE_PICTURES.length ;i++) {
-			int typeq = ASSIGNED_VALUES[i];
-			File picture = Reference.TILE_PICTURES[i];
-			try {
-				depiction.add(typeq, ImageIO.read(picture));
-			} catch (Exception e) {
-				System.err.append("ERROR LOADING IMAGES");
-			}
+		/*
+		 * for (int i = 0 ;
+		 * i<ASSIGNED_VALUES.length||i<Reference.TILE_PICTURES.length ;i++) {
+		 * int typeq = ASSIGNED_VALUES[i]; File picture =
+		 * Reference.TILE_PICTURES[i]; try { depiction.add(typeq,
+		 * ImageIO.read(picture)); } catch (Exception e) {
+		 * System.err.append("ERROR LOADING IMAGES"); } }
+		 */
+		for (int i = 0 ; i<ASSIGNED_VALUES.length;i++) {
+			BufferedImage im = new BufferedImage(32, 32, BufferedImage.TYPE_INT_RGB);
+			Graphics g = im.getGraphics();
+			g.setColor(new Color(25*i,10*i,0));
+			g.fillRect(0, 0, 32, 32);
 		}
 	}
 }
