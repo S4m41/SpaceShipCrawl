@@ -12,3 +12,5 @@ manifest.mf
 .settings/org.eclipse.core.resources.prefs
 *.class
 bin/
+nbproject/private/private.xml
+nbproject/project.xml
