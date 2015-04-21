@@ -1,4 +1,4 @@
-package eventsAndExeptions;
+package com.SoridanSamai.spaceShipCrawl.eventsAndExeptions;
 
 public class ImageLoadingExeption extends Exception {
 

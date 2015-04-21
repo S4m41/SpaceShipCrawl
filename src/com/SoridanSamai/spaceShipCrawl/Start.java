@@ -1,28 +1,50 @@
-package spaceshipcrawl;
+package com.SoridanSamai.spaceShipCrawl;
 
-import java.applet.*;
 import java.awt.*;
+
+import javax.swing.JApplet;
+import javax.swing.JPanel;
 
 /**
  *
  * @author petmeu239
  */
-public class Fönster extends Applet implements Runnable {
-    Controller c = new Controller();
+public class Start extends JApplet implements Runnable {
 
-    int width = 16 * 32, height = 16 * 32;
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5932246779196752754L;
+
+    Controller c;
+
+    int width = Reference.WIEWPORT_WIDTH * Reference.TILE_WIDTH;
+    int height = Reference.WIEWPORT_HEIGHT * Reference.TILE_HEIGHT;
 
     private boolean running = true;
     private boolean paused = false;
 
     @Override
     public void init() {
+
+        c = new Controller();
+        
+        //doublebuffering
+        JPanel jp= new JPanel();
+        jp.setDoubleBuffered(true);
+        this.setContentPane(jp);
+        
         this.setSize(width, height);
+        this.setVisible(true);
+        
+        Thread t = new Thread(this);
+        t.start();
     }
 
     @Override
     public void paint(Graphics g) {
-        c.paint(g);
+
+        c.paint((Graphics2D) g);
     }
 
     public void update(double delta) {
@@ -32,8 +54,8 @@ public class Fönster extends Applet implements Runnable {
     @Override
     public void run() {
         long lastLoopTime = System.nanoTime();
-        final int TARGET_FPS = 60;
-        final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+
+        final long OPTIMAL_TIME = 1000000000 / Reference.TARGET_FPS;
         int fps = 0;
         int lastFpsTime = 0;
 
@@ -45,7 +67,7 @@ public class Fönster extends Applet implements Runnable {
             lastFpsTime += updateLength;
             fps++;
             if (lastFpsTime >= 1000000000) {
-                //System.out.println("(FPS: " + fps + ")");
+                // System.out.println("(FPS: " + fps + ")");
                 System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
