@@ -47,4 +47,9 @@ public class Deck {
         }
     }
 
+    public void updatePopulation(double delta) {
+        for(Entity e : population){
+        }
+    }
+
 }

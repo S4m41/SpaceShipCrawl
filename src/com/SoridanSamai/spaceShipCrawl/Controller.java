@@ -41,6 +41,8 @@ public class Controller {
     }
 
     private void updateBoard(double delta) {
+        Deck d = stage.getActive();
+        d.updatePopulation(delta);
 
     }
 
