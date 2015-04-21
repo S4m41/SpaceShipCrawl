@@ -5,11 +5,14 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 //import com.SoridanSamai.spaceShipCrawl.Reference;
+
+import eventsAndExeptions.ImageLoadingExeption;
 
 /**
  * 

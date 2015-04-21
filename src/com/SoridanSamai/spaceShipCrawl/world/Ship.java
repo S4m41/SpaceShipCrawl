@@ -9,7 +9,7 @@ public class Ship {
     
     public void addDeck(Deck d){
     	ship.add(d);
-    	if(active.equals(null)){
+    	if(active==null){
     		active = d;
     	}
     }
