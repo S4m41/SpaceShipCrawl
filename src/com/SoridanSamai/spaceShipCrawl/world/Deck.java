@@ -3,7 +3,6 @@ package com.SoridanSamai.spaceShipCrawl.world;
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.enemies.Entity;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -20,6 +19,7 @@ public class Deck {
 
     public Deck(int x, int y) {
         schematic = new Tile[x][y];
+        population.add(new Entity());
     }
 
     public void basicFlooring() {
@@ -37,18 +37,24 @@ public class Deck {
                 AffineTransform xform = new AffineTransform();
                 xform.translate(x * Reference.TILE_WIDTH, y * Reference.TILE_HEIGHT);
                 BufferedImage bim = t.getImage();
-                try {
-                    g.drawImage(bim, xform, null);
-                } catch (java.lang.NullPointerException e) {
-                    
-                }
-
+                g.drawImage(bim, xform, null);
             }
+        }
+        for (Entity e : population) {
+            e.paint(g);
         }
     }
 
     public void updatePopulation(double delta) {
-        for(Entity e : population){
+        for (int i = 0; i < population.size(); i++) {
+            Entity e1 = population.get(i);
+            e1.update(delta);
+            for (int j = i + 1; j < population.size(); j++) {
+                Entity e2 = population.get(j);
+                if (e1.isColliding(e2)) {
+                    e1.collide(e2);
+                }
+            }
         }
     }
 
