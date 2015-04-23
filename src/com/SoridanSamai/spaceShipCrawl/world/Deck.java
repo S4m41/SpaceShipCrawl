@@ -48,7 +48,19 @@ public class Deck {
     public void updatePopulation(double delta) {
         for (int i = 0; i < population.size(); i++) {
             Entity e1 = population.get(i);
-            e1.update(delta);
+            
+            int err = 0;
+            do {
+                if (err >= 1) {
+                    e1.collide(schematic[e1.getPosition().x][e1.getPosition().y]);
+                }
+                if (err >= 8) {
+                    break;
+                } 
+                e1.update(delta);
+                err++;
+            } while (!(schematic[e1.getPosition().x][e1.getPosition().y].isPassable()) && err < 0);
+            
             for (int j = i + 1; j < population.size(); j++) {
                 Entity e2 = population.get(j);
                 if (e1.isColliding(e2)) {
