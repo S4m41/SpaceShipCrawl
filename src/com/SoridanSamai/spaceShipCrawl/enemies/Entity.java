@@ -34,7 +34,7 @@ public class Entity {
     }
 
     public void update(double delta) {
-        
+        pos.translate(1, 1);
     }
 
     public boolean isColliding(Entity e2) {

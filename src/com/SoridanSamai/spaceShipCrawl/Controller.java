@@ -32,18 +32,26 @@ public class Controller {
         d.paint(g);
         ui.paint(g);
     }
+    double timer = 0;
 
     void update(double delta) {
         ui.update(delta);
         if (shouldMove) {
             updateBoard(delta);
+        } else {
+            timer += (1e9 * delta / Reference.TARGET_FPS);
+            if (timer >= 1e9) {
+                shouldMove = true;
+                timer = 0;
+            }
         }
+
     }
 
     private void updateBoard(double delta) {
         Deck d = stage.getActive();
         d.updatePopulation(delta);
-
+        shouldMove = false;
     }
 
 }

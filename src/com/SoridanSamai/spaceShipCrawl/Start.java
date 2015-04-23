@@ -23,7 +23,7 @@ public class Start extends JApplet implements Runnable {
 
     private boolean running = true;
     private boolean paused = false;
-    Doublebuffer db;
+    private Doublebuffer db;
 
     @Override
     public void init() {
@@ -65,7 +65,7 @@ public class Start extends JApplet implements Runnable {
     public void run() {
         long lastLoopTime = System.nanoTime();
 
-        final long OPTIMAL_TIME = 1000000000 / Reference.TARGET_FPS;
+        final long OPTIMAL_TIME = (long) (1e9 / Reference.TARGET_FPS);
         int fps = 0;
         int lastFpsTime = 0;
 
@@ -77,7 +77,6 @@ public class Start extends JApplet implements Runnable {
             lastFpsTime += updateLength;
             fps++;
             if (lastFpsTime >= 1000000000) {
-                // System.out.println("(FPS: " + fps + ")");
                 System.out.println("(FPS: " + fps + ")");
                 lastFpsTime = 0;
                 fps = 0;
