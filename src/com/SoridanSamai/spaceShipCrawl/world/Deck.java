@@ -33,11 +33,16 @@ public class Deck {
     public void advancedFlooring() {
         for (int x = 0; x < schematic.length; x++) {
             for (int y = 0; y < schematic[x].length; y++) {
-                
-                
-                
+
+                int z = (int) (Math.random() * 2);
+
+                try {
+                    schematic[x][y] = new Tile(1);
+                } catch (Exception e) {
+                }
             }
         }
+
     }
 
     public void paint(Graphics2D g) {
