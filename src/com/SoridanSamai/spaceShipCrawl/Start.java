@@ -17,6 +17,8 @@ public class Start extends JApplet implements Runnable {
     private static final long serialVersionUID = 5932246779196752754L;
 
     Controller c;
+    public static MouseModule mm = new MouseModule();
+    public static KeyboardModule km = new KeyboardModule();
 
     int width = Reference.WIEWPORT_WIDTH * Reference.TILE_WIDTH;
     int height = Reference.WIEWPORT_HEIGHT * Reference.TILE_HEIGHT;
@@ -34,7 +36,12 @@ public class Start extends JApplet implements Runnable {
         JPanel jp = new JPanel();
         jp.setDoubleBuffered(true);
         this.setContentPane(jp);
-
+        
+        this.addKeyListener(km);
+        this.addMouseListener(mm);
+        this.addMouseMotionListener(mm);
+        this.addMouseWheelListener(mm);
+        
         this.setSize(width, height);
         this.setVisible(true);
         db = new Doublebuffer() {
@@ -86,7 +93,9 @@ public class Start extends JApplet implements Runnable {
             }
 
             repaint();
-
+            
+            mm.cleanUp();
+            
             long l = (lastLoopTime + OPTIMAL_TIME);
             if (l < 0) {
 
