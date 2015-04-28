@@ -10,7 +10,7 @@ public class Reference {
     public static final File WALL_PICTURE = new File(RECOURCE_PATH, "vägg1.png");
     public static final File TELEPORTER_PICTURE = new File(RECOURCE_PATH, "teleport1.png");
     public static final File[] TILE_PICTURES = {FLOOR_PICTURE, WALL_PICTURE, TELEPORTER_PICTURE};
-
+    public static final File    LEVEL_FILE=new File(RECOURCE_PATH,"level1.txt");
     //Values
         // World&tile size
     public static final int TILE_WIDTH = 32;
