@@ -24,7 +24,7 @@ public class Tile {
     public static final int FLOOR = 0;
     public static final int WALL = 1;
     public static final int TELEPORT = 2;
-    private static final int[] ASSIGNED_VALUES = {0, 1, 2};//must be y=x
+    public static final int[] ASSIGNED_VALUES = {0, 1, 2};//must be y=x
     private final int type;
 
     public Tile() {

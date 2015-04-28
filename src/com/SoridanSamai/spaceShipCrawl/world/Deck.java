@@ -7,6 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -65,6 +67,7 @@ public class Deck {
             Entity e1 = population.get(i);
 
             int err = 0;
+            boolean test;
             do {
                 if (err >= 1) {
                     e1.collide(schematic[e1.getPosition().x][e1.getPosition().y]);
@@ -73,8 +76,19 @@ public class Deck {
                     break;
                 }
                 e1.update(delta);
+                try {
+                    test = schematic[e1.getPosition().x][e1.getPosition().y].isPassable();
+                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                    try {
+                        e1.collide(new Tile(Tile.WALL));
+                    } catch (Exception ex) {
+                    }
+                    test = false;
+                }
+
                 err++;
-            } while (!(schematic[e1.getPosition().x][e1.getPosition().y].isPassable()) && err < 0);
+
+            } while (!(test && err < 0));
 
             for (int j = i + 1; j < population.size(); j++) {
                 Entity e2 = population.get(j);

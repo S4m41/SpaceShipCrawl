@@ -36,12 +36,12 @@ public class Start extends JApplet implements Runnable {
         JPanel jp = new JPanel();
         jp.setDoubleBuffered(true);
         this.setContentPane(jp);
-        
+
         this.addKeyListener(km);
         this.addMouseListener(mm);
         this.addMouseMotionListener(mm);
         this.addMouseWheelListener(mm);
-        
+
         this.setSize(width, height);
         this.setVisible(true);
         db = new Doublebuffer() {
@@ -59,8 +59,13 @@ public class Start extends JApplet implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-        db.paint(g);
-        db.show(g);
+        try {
+            db.paint(g);
+            db.show(g);
+        } catch (Exception e) {
+            System.out.println(e.getClass());
+            System.out.println(e.getMessage());
+        }
 
     }
 
@@ -91,11 +96,10 @@ public class Start extends JApplet implements Runnable {
             if (!paused) {
                 update(delta);
             }
-
             repaint();
-            
+
             mm.cleanUp();
-            
+
             long l = (lastLoopTime + OPTIMAL_TIME);
             if (l < 0) {
 
