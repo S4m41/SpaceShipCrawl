@@ -33,15 +33,29 @@ public class Deck {
     }
 
     public void advancedFlooring() {
-        for (int x = 0; x < schematic.length; x++) {
-            for (int y = 0; y < schematic[x].length; y++) {
+        int level= 1;
+        byte[][] readlist=MapReader.read("level"+level+".txt");
+        
+        for (int x = 0; x < readlist.length; x++) {
+            for (int y = 0; y < readlist[x].length; y++) {
 
-                int z = (int) (Math.random() * 2);
-
+              if(readlist[x][y]==0){
+                try {
+                    schematic[x][y] = new Tile(0);
+                } catch (Exception e) {
+                }}
+              else if(readlist[x][y]==1){
                 try {
                     schematic[x][y] = new Tile(1);
                 } catch (Exception e) {
                 }
+            }else if(readlist[x][y]==2){
+                try {
+                    schematic[x][y] = new Tile(2);
+                } catch (Exception e) {
+                }
+            }
+              
             }
         }
 
