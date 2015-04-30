@@ -16,8 +16,7 @@ public class Entity {
     Point pos, lastPos;
 
     public Entity() {
-        pos = new Point(0, 0);
-        updatelastpos();
+        this(1,1);
     }
 
     public Entity(int x, int y) {
@@ -34,7 +33,7 @@ public class Entity {
     }
 
     public void update(double delta) {
-        pos.translate(1, 1);
+        pos.translate(1,0);
     }
 
     public boolean isColliding(Entity e2) {

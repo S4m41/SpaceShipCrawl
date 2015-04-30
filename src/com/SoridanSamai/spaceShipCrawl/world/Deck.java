@@ -7,8 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -33,29 +31,31 @@ public class Deck {
     }
 
     public void advancedFlooring() {
-        int level= 1;
-        byte[][] readlist=MapReader.read("level"+level+".txt");
-        
+        int level = 1;
+        byte[][] readlist = MapReader.read("level" + level + ".txt");
+
         for (int x = 0; x < readlist.length; x++) {
             for (int y = 0; y < readlist[x].length; y++) {
+//        for (int x = 0; x < 48; x++) {
+//            for (int y = 0; y < 24; y++) {
 
-              if(readlist[x][y]==0){
-                try {
-                    schematic[x][y] = new Tile(0);
-                } catch (Exception e) {
-                }}
-              else if(readlist[x][y]==1){
-                try {
-                    schematic[x][y] = new Tile(1);
-                } catch (Exception e) {
+                if (readlist[x][y] == 0) {
+                    try {
+                        schematic[x][y] = new Tile(0);
+                    } catch (Exception e) {
+                    }
+                } else if (readlist[x][y] == 1) {
+                    try {
+                        schematic[x][y] = new Tile(1);
+                    } catch (Exception e) {
+                    }
+                } else if (readlist[x][y] == 2) {
+                    try {
+                        schematic[x][y] = new Tile(2);
+                    } catch (Exception e) {
+                    }
                 }
-            }else if(readlist[x][y]==2){
-                try {
-                    schematic[x][y] = new Tile(2);
-                } catch (Exception e) {
-                }
-            }
-              
+
             }
         }
 
@@ -77,16 +77,16 @@ public class Deck {
     }
 
     public void updatePopulation(double delta) {
-        for (int i = 0; i < population.size(); i++) {
+        for (int i = 1; i < population.size(); i++) {
             Entity e1 = population.get(i);
 
             int err = 0;
-            boolean test;
+            boolean test=false;
             do {
                 if (err >= 1) {
                     e1.collide(schematic[e1.getPosition().x][e1.getPosition().y]);
                 }
-                if (err >= 8) {
+                if (err >= 7) {
                     break;
                 }
                 e1.update(delta);

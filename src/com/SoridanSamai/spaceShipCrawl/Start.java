@@ -1,6 +1,7 @@
 package com.SoridanSamai.spaceShipCrawl;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import javax.swing.JApplet;
 import javax.swing.JPanel;
@@ -42,7 +43,7 @@ public class Start extends JApplet implements Runnable {
         this.addMouseMotionListener(mm);
         this.addMouseWheelListener(mm);
 
-        this.setSize(width, height);
+        this.setPreferredSize(new Dimension(width, height));
         this.setVisible(true);
         db = new Doublebuffer() {
 
@@ -59,13 +60,13 @@ public class Start extends JApplet implements Runnable {
 
     @Override
     public void paint(Graphics g) {
-        try {
+       // try {
             db.paint(g);
             db.show(g);
-        } catch (Exception e) {
-            System.out.println(e.getClass());
-            System.out.println(e.getMessage());
-        }
+//        } catch (Exception e) {
+//            System.out.println(e.getClass());
+//            System.out.println(e.getMessage());
+//        }
 
     }
 
@@ -120,7 +121,8 @@ public class Start extends JApplet implements Runnable {
 
         public void init(JApplet a) {
             dim = a.getSize();
-            osi = createImage(dim.width, dim.height);
+            //osi = createImage(dim.width, dim.height);
+            osi = new BufferedImage(width, height,BufferedImage.TYPE_INT_ARGB);
             buffergraphics = osi.getGraphics();
         }
 

@@ -23,7 +23,7 @@ public class Controller {
     public Controller() {
         Tile.initImages();
         Deck add = new Deck(Reference.WORLD_WIDTH, Reference.WORLD_HEIGHT);
-      //  add.basicFlooring();
+     //  add.basicFlooring();
         add.advancedFlooring();
         stage.addDeck(add);
     }
