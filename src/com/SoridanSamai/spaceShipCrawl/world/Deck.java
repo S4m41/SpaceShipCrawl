@@ -31,7 +31,7 @@ public class Deck {
     }
 
     public void advancedFlooring() {
-        int level = 1;
+        int level = (int) (1+Math.random()*2);
         byte[][] readlist = MapReader.read("level" + level + ".txt");
 
         for (int x = 0; x < readlist.length; x++) {
