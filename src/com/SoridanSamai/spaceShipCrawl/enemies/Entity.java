@@ -2,9 +2,7 @@ package com.SoridanSamai.spaceShipCrawl.enemies;
 
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.world.Tile;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Point;
+import java.awt.*;
 import java.lang.ref.ReferenceQueue;
 
 /**
