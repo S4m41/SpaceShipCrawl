@@ -36,9 +36,6 @@ public class Deck {
 
         for (int x = 0; x < readlist.length; x++) {
             for (int y = 0; y < readlist[x].length; y++) {
-//        for (int x = 0; x < 48; x++) {
-//            for (int y = 0; y < 24; y++) {
-
                 if (readlist[x][y] == 0) {
                     try {
                         schematic[x][y] = new Tile(0);
@@ -55,10 +52,8 @@ public class Deck {
                     } catch (Exception e) {
                     }
                 }
-
             }
         }
-
     }
 
     public void paint(Graphics2D g) {
