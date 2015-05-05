@@ -3,6 +3,12 @@ package com.SoridanSamai.spaceShipCrawl.enemies;
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.world.Tile;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -11,7 +17,8 @@ import java.awt.*;
 public class Entity {
 
     Point pos, lastPos;
-
+    
+    BufferedImage bim;
     public Entity() {
         this(1,1);
     }
@@ -19,6 +26,11 @@ public class Entity {
     public Entity(int x, int y) {
         pos = new Point(x, y);
         updatelastpos();
+        try {
+            initImage();
+        } catch (IOException ex) {
+            Logger.getLogger(Entity.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void updatelastpos() {
@@ -45,10 +57,20 @@ public class Entity {
     }
 
     public void paint(Graphics2D g) {
-        g.setColor(Color.red);
-        g.fillOval(pos.x * Reference.TILE_WIDTH,
-                pos.y * Reference.TILE_WIDTH, 
-                Reference.TILE_WIDTH, 
-                Reference.TILE_HEIGHT);
+//        g.setColor(Color.red);
+//        g.fillOval(pos.x * Reference.TILE_WIDTH,
+//                pos.y * Reference.TILE_WIDTH, 
+//                Reference.TILE_WIDTH, 
+//                Reference.TILE_HEIGHT);
+        int x = pos.x;
+        int y = pos.y;
+        
+        AffineTransform xform = new AffineTransform();
+                xform.translate(x * Reference.TILE_WIDTH, y * Reference.TILE_HEIGHT);
+                g.drawImage(bim, xform, null);
+    }
+
+    protected void initImage() throws IOException {
+        bim = ImageIO.read(Reference.ENTITY_PICTURE);
     }
 }

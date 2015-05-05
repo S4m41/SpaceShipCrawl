@@ -1,18 +1,11 @@
 package com.SoridanSamai.spaceShipCrawl.world;
 
 import com.SoridanSamai.spaceShipCrawl.Reference;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
-
-//import com.SoridanSamai.spaceShipCrawl.Reference;
-import com.SoridanSamai.spaceShipCrawl.eventsAndExeptions.ImageLoadingExeption;
 
 /**
  *
@@ -20,7 +13,7 @@ import com.SoridanSamai.spaceShipCrawl.eventsAndExeptions.ImageLoadingExeption;
  */
 public class Tile {
 
-    private static ArrayList<BufferedImage> depiction = new ArrayList<BufferedImage>();
+    private static ArrayList<BufferedImage> depiction = new ArrayList<>();
     public static final int FLOOR = 0;
     public static final int WALL = 1;
     public static final int TELEPORT = 2;

@@ -3,16 +3,22 @@ package com.SoridanSamai.spaceShipCrawl.enemies;
 import com.SoridanSamai.spaceShipCrawl.KeyboardModule;
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.SpaceShipCrawl;
-import com.SoridanSamai.spaceShipCrawl.Start;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
 
 /**
  *
  * @author simlin329
  */
 public class Player extends Entity {
+
+    public Player() {
+        super();
+    }
+    public Player(int x, int y){
+        super(x, y);
+    }
+    
 
     @Override
     public void update(double delta) {
