@@ -2,6 +2,7 @@ package com.SoridanSamai.spaceShipCrawl.world;
 
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.enemies.Entity;
+import com.SoridanSamai.spaceShipCrawl.enemies.Player;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -19,7 +20,6 @@ public class Deck {
 
     public Deck(int x, int y) {
         schematic = new Tile[x][y];
-        population.add(new Entity());
     }
 
     public void basicFlooring() {
@@ -28,6 +28,11 @@ public class Deck {
                 schematic[x][y] = new Tile();
             }
         }
+    }
+
+    public void basicPopulation() {
+        population.add(new Player());
+        population.add(new Entity(20, 20));
     }
 
     public void advancedFlooring() {
@@ -60,7 +65,7 @@ public class Deck {
     }
 
     public void updatePopulation(double delta) {
-        for (int i = 1; i < population.size(); i++) {
+        for (int i = 0; i < population.size(); i++) {
             Entity e1 = population.get(i);
 
             int err = 0;
@@ -68,10 +73,11 @@ public class Deck {
             do {
                 if (err >= 1) {
                     e1.collide(schematic[e1.getPosition().x][e1.getPosition().y]);
+                    if (err >= 7) {
+                        break;
+                    }
                 }
-                if (err >= 7) {
-                    break;
-                }
+
                 e1.update(delta);
                 try {
                     test = schematic[e1.getPosition().x][e1.getPosition().y].isPassable();
@@ -85,7 +91,7 @@ public class Deck {
 
                 err++;
 
-            } while (!(test && err < 0));
+            } while (!test);
 
             for (int j = i + 1; j < population.size(); j++) {
                 Entity e2 = population.get(j);
@@ -93,6 +99,7 @@ public class Deck {
                     e1.collide(e2);
                 }
             }
+            e1.updatelastpos();
         }
     }
 

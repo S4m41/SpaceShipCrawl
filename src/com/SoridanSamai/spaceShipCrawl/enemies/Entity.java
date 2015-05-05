@@ -3,7 +3,6 @@ package com.SoridanSamai.spaceShipCrawl.enemies;
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.world.Tile;
 import java.awt.*;
-import java.lang.ref.ReferenceQueue;
 
 /**
  *
@@ -22,7 +21,7 @@ public class Entity {
         updatelastpos();
     }
 
-    private void updatelastpos() {
+    public void updatelastpos() {
         lastPos = new Point(pos);
     }
 
@@ -47,6 +46,9 @@ public class Entity {
 
     public void paint(Graphics2D g) {
         g.setColor(Color.red);
-        g.fillOval(pos.x * Reference.TILE_WIDTH, pos.y * Reference.TILE_WIDTH, Reference.TILE_WIDTH, Reference.TILE_HEIGHT);
+        g.fillOval(pos.x * Reference.TILE_WIDTH,
+                pos.y * Reference.TILE_WIDTH, 
+                Reference.TILE_WIDTH, 
+                Reference.TILE_HEIGHT);
     }
 }

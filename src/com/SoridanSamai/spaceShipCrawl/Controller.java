@@ -1,14 +1,11 @@
 package com.SoridanSamai.spaceShipCrawl;
 
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 import com.SoridanSamai.spaceShipCrawl.world.Deck;
 import com.SoridanSamai.spaceShipCrawl.world.Ship;
 import com.SoridanSamai.spaceShipCrawl.world.Tile;
 
-import com.SoridanSamai.spaceShipCrawl.eventsAndExeptions.ImageLoadingExeption;
 
 /**
  *
@@ -25,6 +22,7 @@ public class Controller {
         Deck add = new Deck(Reference.WORLD_WIDTH, Reference.WORLD_HEIGHT);
      //  add.basicFlooring();
         add.advancedFlooring();
+        add.basicPopulation();
         stage.addDeck(add);
     }
 
