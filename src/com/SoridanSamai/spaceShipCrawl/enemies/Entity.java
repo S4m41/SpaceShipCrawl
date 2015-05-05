@@ -23,7 +23,7 @@ public class Entity {
     }
 
     private void updatelastpos() {
-        lastPos = pos;
+        lastPos = new Point(pos);
     }
 
     public Point getPosition() {
@@ -39,10 +39,10 @@ public class Entity {
     }
 
     public void collide(Entity e2) {
-        this.pos = lastPos;
+        this.pos = new Point(lastPos);
     }
     public void collide(Tile t2) {
-        this.pos = lastPos;
+        this.pos = new Point(lastPos);
     }
 
     public void paint(Graphics2D g) {

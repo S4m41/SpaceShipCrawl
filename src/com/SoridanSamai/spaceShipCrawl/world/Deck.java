@@ -31,26 +31,14 @@ public class Deck {
     }
 
     public void advancedFlooring() {
-        int level = (int) (1+Math.random()*2);
+        int level = (int) (1 + Math.random() * 2);
         byte[][] readlist = MapReader.read("level" + level + ".txt");
 
         for (int x = 0; x < readlist.length; x++) {
             for (int y = 0; y < readlist[x].length; y++) {
-                if (readlist[x][y] == 0) {
-                    try {
-                        schematic[x][y] = new Tile(0);
-                    } catch (Exception e) {
-                    }
-                } else if (readlist[x][y] == 1) {
-                    try {
-                        schematic[x][y] = new Tile(1);
-                    } catch (Exception e) {
-                    }
-                } else if (readlist[x][y] == 2) {
-                    try {
-                        schematic[x][y] = new Tile(2);
-                    } catch (Exception e) {
-                    }
+                try {
+                    schematic[x][y] = new Tile(readlist[x][y]);
+                } catch (Exception e) {
                 }
             }
         }
@@ -76,7 +64,7 @@ public class Deck {
             Entity e1 = population.get(i);
 
             int err = 0;
-            boolean test=false;
+            boolean test = false;
             do {
                 if (err >= 1) {
                     e1.collide(schematic[e1.getPosition().x][e1.getPosition().y]);
