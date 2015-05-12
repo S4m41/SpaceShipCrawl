@@ -71,6 +71,6 @@ public class Entity {
     }
 
     protected void initImage() throws IOException {
-        bim = ImageIO.read(Reference.ENTITY_PICTURE);
+        
     }
 }
