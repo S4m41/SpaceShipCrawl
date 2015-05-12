@@ -99,8 +99,6 @@ public class Deck {
         for (int i = 0; i < population.size(); i++) {
             Entity e1 = population.get(i);
 
-            collissions(e1, delta);
-
             if (e1 instanceof Player) {
 //                ta position
                 Point F = new Point(e1.getPosition());
@@ -108,6 +106,7 @@ public class Deck {
                 floodfill(set);
                 visited.clear();
             }
+            collissions(e1, delta);
 
             for (int j = i + 1; j < population.size(); j++) {
                 Entity e2 = population.get(j);

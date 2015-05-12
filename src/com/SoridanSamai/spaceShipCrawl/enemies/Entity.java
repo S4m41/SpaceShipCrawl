@@ -26,7 +26,7 @@ public class Entity {
 
     public Entity(int x, int y) {
         pos = new Point(x, y);
-        target = new Point(pos.y, pos.x + 10);
+//        target = new Point(pos.y, pos.x + 10);
         updatelastpos();
         try {
             initImage();
