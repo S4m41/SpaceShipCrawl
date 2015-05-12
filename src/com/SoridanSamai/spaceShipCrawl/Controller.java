@@ -5,13 +5,18 @@ import java.awt.Graphics2D;
 import com.SoridanSamai.spaceShipCrawl.world.Deck;
 import com.SoridanSamai.spaceShipCrawl.world.Ship;
 import com.SoridanSamai.spaceShipCrawl.world.Tile;
-
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author simlin329
  */
 public class Controller {
+
+    private final KeyboardModule km = SpaceShipCrawl.km;
+    private final MouseModule mm = SpaceShipCrawl.mm;
+
+    private int[] inputkeys = {KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D};
 
     private boolean shouldMove = true;
     Ship stage = new Ship();
@@ -20,7 +25,7 @@ public class Controller {
     public Controller() {
         Tile.initImages();
         Deck add = new Deck(Reference.WORLD_WIDTH, Reference.WORLD_HEIGHT);
-     //  add.basicFlooring();
+        //  add.basicFlooring();
         add.advancedFlooring();
         add.basicPopulation();
         stage.addDeck(add);
@@ -38,11 +43,17 @@ public class Controller {
         if (shouldMove) {
             updateBoard(delta);
         } else {
-            timer += (1e9 * delta / Reference.TARGET_FPS);
-            if (timer >= 1e9) {
-                shouldMove = true;
-                timer = 0;
+            for (int key : inputkeys) {
+                if (km.isPressed(key)) {
+                    shouldMove = true;
+                    break;
+                }
             }
+//            timer += (1e9 * delta / Reference.TARGET_FPS);
+//            if (timer >= 1e9) {
+//                shouldMove = true;
+//                timer = 0;
+//            }
         }
 
     }
