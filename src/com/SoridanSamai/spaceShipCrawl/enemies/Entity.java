@@ -44,7 +44,8 @@ public class Entity {
     }
 
     public void update(double delta) {
-        pos.translate(1, 0);
+//        pos.translate(1, 0);
+        pos = new Point(target);
     }
 
     public boolean isColliding(Entity e2) {
