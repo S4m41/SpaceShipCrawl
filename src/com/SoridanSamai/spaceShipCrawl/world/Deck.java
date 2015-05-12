@@ -98,7 +98,16 @@ public class Deck {
             collissions(e1, delta);
 
             if (e1 instanceof Player) {
+//                ta position
                 
+//                floodfill
+//                  i floodfill
+//                  denna ruta
+//                  rutorna brevid
+//                      om rutorna brevid=passable
+//                          lägg till punkt
+//                          för varje tillagd punkt
+//                                floodfill
             }
 
             for (int j = i + 1; j < population.size(); j++) {
