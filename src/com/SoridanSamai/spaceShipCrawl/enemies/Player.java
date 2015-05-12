@@ -5,6 +5,7 @@ import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.SpaceShipCrawl;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
@@ -46,13 +47,18 @@ public class Player extends Entity {
         }
     }
 
-//    @Override
-//    public void paint(Graphics2D g) {
+    @Override
+    public void paint(Graphics2D g) {
+        int x = pos.x;
+        int y = pos.y;
+        AffineTransform xform = new AffineTransform();
+                xform.translate(x * Reference.TILE_WIDTH, y * Reference.TILE_HEIGHT);
+                g.drawImage(bim, xform, null);
 //        g.setColor(Color.black);
 //        g.fillOval(pos.x * Reference.TILE_WIDTH,
 //                pos.y * Reference.TILE_WIDTH,
 //                Reference.TILE_WIDTH,
 //                Reference.TILE_HEIGHT);
-//    }
+    }
 
 }

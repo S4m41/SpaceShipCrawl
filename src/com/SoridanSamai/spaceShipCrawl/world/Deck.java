@@ -31,7 +31,7 @@ public class Deck {
     }
 
     public void basicPopulation() {
-        population.add(new Player());
+        population.add(new Player(19, 19));
         population.add(new Entity(20, 20));
     }
 
@@ -64,37 +64,46 @@ public class Deck {
         }
     }
 
+    private void collissions(Entity e, double delta) {
+        int err = 0;
+        boolean test = false;
+        do {
+            if (err >= 1) {
+                e.collide(schematic[e.getPosition().x][e.getPosition().y]);
+                if (err >= 7) {
+                    break;
+                }
+            }
+
+            e.update(delta);
+            try {
+                test = schematic[e.getPosition().x][e.getPosition().y].isPassable();
+            } catch (java.lang.ArrayIndexOutOfBoundsException e1) {
+                try {
+                    e.collide(new Tile(Tile.WALL));
+                } catch (Exception ex) {
+                }
+                test = false;
+            }
+
+            err++;
+
+        } while (!test);
+    }
+
     public void updatePopulation(double delta) {
         for (int i = 0; i < population.size(); i++) {
             Entity e1 = population.get(i);
 
-            int err = 0;
-            boolean test = false;
-            do {
-                if (err >= 1) {
-                    e1.collide(schematic[e1.getPosition().x][e1.getPosition().y]);
-                    if (err >= 7) {
-                        break;
-                    }
-                }
+            collissions(e1, delta);
 
-                e1.update(delta);
-                try {
-                    test = schematic[e1.getPosition().x][e1.getPosition().y].isPassable();
-                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-                    try {
-                        e1.collide(new Tile(Tile.WALL));
-                    } catch (Exception ex) {
-                    }
-                    test = false;
-                }
-
-                err++;
-
-            } while (!test);
+            if (e1 instanceof Player) {
+                
+            }
 
             for (int j = i + 1; j < population.size(); j++) {
                 Entity e2 = population.get(j);
+
                 if (e1.isColliding(e2)) {
                     e1.collide(e2);
                 }

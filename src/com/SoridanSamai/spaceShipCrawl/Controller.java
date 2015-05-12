@@ -43,17 +43,16 @@ public class Controller {
         if (shouldMove) {
             updateBoard(delta);
         } else {
-            for (int key : inputkeys) {
-                if (km.isPressed(key)) {
-                    shouldMove = true;
-                    break;
+            timer += (1e9 * delta / Reference.TARGET_FPS);
+            if (timer >= 1e7) {
+
+                for (int key : inputkeys) {
+                    if (km.isPressed(key)) {
+                        shouldMove = true;
+                        break;
+                    }
                 }
             }
-//            timer += (1e9 * delta / Reference.TARGET_FPS);
-//            if (timer >= 1e9) {
-//                shouldMove = true;
-//                timer = 0;
-//            }
         }
 
     }

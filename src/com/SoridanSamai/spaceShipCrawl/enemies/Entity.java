@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  */
 public class Entity {
 
-    Point pos, lastPos;
+    Point pos, lastPos,target;
     
     BufferedImage bim;
     public Entity() {
@@ -25,6 +25,7 @@ public class Entity {
 
     public Entity(int x, int y) {
         pos = new Point(x, y);
+        target = new Point(pos.y,pos.x+10);
         updatelastpos();
         try {
             initImage();
@@ -57,11 +58,11 @@ public class Entity {
     }
 
     public void paint(Graphics2D g) {
-//        g.setColor(Color.red);
-//        g.fillOval(pos.x * Reference.TILE_WIDTH,
-//                pos.y * Reference.TILE_WIDTH, 
-//                Reference.TILE_WIDTH, 
-//                Reference.TILE_HEIGHT);
+        g.setColor(Color.red);
+        g.fillOval(pos.x * Reference.TILE_WIDTH,
+                pos.y * Reference.TILE_WIDTH, 
+                Reference.TILE_WIDTH, 
+                Reference.TILE_HEIGHT);
         int x = pos.x;
         int y = pos.y;
         
