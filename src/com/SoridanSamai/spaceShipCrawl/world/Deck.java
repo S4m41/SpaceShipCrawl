@@ -131,36 +131,22 @@ public class Deck {
     private void floodfill(HashSet<Point> set) {
         for (Point p : set) {
             if (set.isEmpty() || !isPassable(p.x, p.y)) {
-            } else{
-                HashSet<Point> nextSet=new HashSet();
-                
-                if( isPassable(p.x-1, p.y)){
-                    nextSet.add(new Point(p.x-1,p.y));
+            } else {
+                HashSet<Point> nextSet = new HashSet();
+                for (int i = -1; i < 2; i++) {
+                    for (int j = -1; j < 2; j++) {
+                        if (i == 0 && j == 0) {
+                            continue;
+                        }
+                        if (isPassable(p.x + i, p.y + j)) {
+                            nextSet.add(new Point(p.x + i, p.y + j));
+                        }
+                    }
                 }
-                if( isPassable(p.x-1, p.y-1)){
-                    nextSet.add(new Point(p.x-1,p.y-1));
-                }
-                if( isPassable(p.x, p.y-1)){
-                    nextSet.add(new Point(p.x,p.y-1));
-                }
-                if( isPassable(p.x+1, p.y-1)){
-                    nextSet.add(new Point(p.x+1,p.y-1));
-                }
-                  if( isPassable(p.x+1, p.y)){
-                    nextSet.add(new Point(p.x+1,p.y));
-                }
-                if( isPassable(p.x+1, p.y+1)){
-                    nextSet.add(new Point(p.x+1,p.y+1));
-                }
-                if( isPassable(p.x, p.y+1)){
-                    nextSet.add(new Point(p.x,p.y+1));
-                }
-                if( isPassable(p.x-1, p.y+1)){
-                    nextSet.add(new Point(p.x-1,p.y+1));
-                }
-                for(Point lsdkfs : nextSet){
-                    for(Entity e: population){
-                        if(e.getPosition().equals(lsdkfs)){
+
+                for (Point reason : nextSet) {
+                    for (Entity e : population) {
+                        if (e.getPosition().equals(reason)) {
                             e.setTarget(p);
                         }
                     }
