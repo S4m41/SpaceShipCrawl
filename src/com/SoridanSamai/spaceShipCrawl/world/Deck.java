@@ -106,14 +106,7 @@ public class Deck {
                 Point F = new Point(e1.getPosition());
                 set.add(F);
                 floodfill(set);
-//                floodfill
-                //                  i floodfill
-                //                  denna ruta
-                //                  rutorna brevid
-                //                      om rutorna brevid=passable
-                //                          lägg till punkt
-                //                          för varje tillagd punkt
-                //                                floodfill
+                visited.clear();
             }
 
             for (int j = i + 1; j < population.size(); j++) {
@@ -127,18 +120,20 @@ public class Deck {
         }
     }
     HashSet<Point> set = new HashSet();
+    HashSet<Point> visited = new HashSet();
 
     private void floodfill(HashSet<Point> set) {
+        HashSet<Point> nextSet = new HashSet();
         for (Point p : set) {
             if (set.isEmpty() || !isPassable(p.x, p.y)) {
             } else {
-                HashSet<Point> nextSet = new HashSet();
+
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
                         if (i == 0 && j == 0) {
                             continue;
                         }
-                        if (isPassable(p.x + i, p.y + j)) {
+                        if (isPassable(p.x + i, p.y + j) && !visited.contains(p)) {
                             nextSet.add(new Point(p.x + i, p.y + j));
                         }
                     }
@@ -151,10 +146,12 @@ public class Deck {
                         }
                     }
                 }
-                set.clear();
+
+                visited.add(p);
                 floodfill(nextSet);
                 nextSet.clear();
             }
         }
+        set.clear();
     }
 }
