@@ -31,7 +31,7 @@ public class Deck {
     }
 
     public void basicPopulation() {
-        population.add(new Player(19, 19));
+        population.add(new Player());
         population.add(new Entity(20, 20));
     }
 
@@ -135,14 +135,11 @@ public class Deck {
                         }
                         if (isPassable(p.x + i, p.y + j) && !visited.contains(p)) {
                             nextSet.add(new Point(p.x + i, p.y + j));
-                        }
-                    }
-                }
-
-                for (Point reason : nextSet) {
-                    for (Entity e : population) {
-                        if (e.getPosition().equals(reason)) {
-                            e.setTarget(p);
+                            for (Entity e : population) {
+                                if (e.getPosition().equals(new Point(p.x + i, p.y + j))) {
+                                    e.setTarget(p);
+                                }
+                            }
                         }
                     }
                 }
