@@ -4,10 +4,10 @@ import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.enemies.Entity;
 import com.SoridanSamai.spaceShipCrawl.enemies.Player;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  *
@@ -91,6 +91,10 @@ public class Deck {
         } while (!test);
     }
 
+    public boolean isPassable(int x, int y) {
+        return schematic[x][y].isPassable();
+    }
+
     public void updatePopulation(double delta) {
         for (int i = 0; i < population.size(); i++) {
             Entity e1 = population.get(i);
@@ -99,15 +103,17 @@ public class Deck {
 
             if (e1 instanceof Player) {
 //                ta position
-                
+                Point F = new Point(e1.getPosition());
+                set.add(F);
+                floodfill(set);
 //                floodfill
-//                  i floodfill
-//                  denna ruta
-//                  rutorna brevid
-//                      om rutorna brevid=passable
-//                          lägg till punkt
-//                          för varje tillagd punkt
-//                                floodfill
+                //                  i floodfill
+                //                  denna ruta
+                //                  rutorna brevid
+                //                      om rutorna brevid=passable
+                //                          lägg till punkt
+                //                          för varje tillagd punkt
+                //                                floodfill
             }
 
             for (int j = i + 1; j < population.size(); j++) {
@@ -120,5 +126,49 @@ public class Deck {
             e1.updatelastpos();
         }
     }
+    HashSet<Point> set = new HashSet();
 
+    private void floodfill(HashSet<Point> set) {
+        for (Point p : set) {
+            if (set.isEmpty() || !isPassable(p.x, p.y)) {
+            } else{
+                HashSet<Point> nextSet=new HashSet();
+                
+                if( isPassable(p.x-1, p.y)){
+                    nextSet.add(new Point(p.x-1,p.y));
+                }
+                if( isPassable(p.x-1, p.y-1)){
+                    nextSet.add(new Point(p.x-1,p.y-1));
+                }
+                if( isPassable(p.x, p.y-1)){
+                    nextSet.add(new Point(p.x,p.y-1));
+                }
+                if( isPassable(p.x+1, p.y-1)){
+                    nextSet.add(new Point(p.x+1,p.y-1));
+                }
+                  if( isPassable(p.x+1, p.y)){
+                    nextSet.add(new Point(p.x+1,p.y));
+                }
+                if( isPassable(p.x+1, p.y+1)){
+                    nextSet.add(new Point(p.x+1,p.y+1));
+                }
+                if( isPassable(p.x, p.y+1)){
+                    nextSet.add(new Point(p.x,p.y+1));
+                }
+                if( isPassable(p.x-1, p.y+1)){
+                    nextSet.add(new Point(p.x-1,p.y+1));
+                }
+                for(Point lsdkfs : nextSet){
+                    for(Entity e: population){
+                        if(e.getPosition().equals(lsdkfs)){
+                            e.setTarget(p);
+                        }
+                    }
+                }
+                set.clear();
+                floodfill(nextSet);
+                nextSet.clear();
+            }
+        }
+    }
 }
