@@ -36,7 +36,7 @@ public class MapReader {
     }
 
     public static void main(String[] args) {
-        int i = (int) (3 * Math.random());
+        int i = 1;//(int) (3 * Math.random());
         byte[][] arr = MapReader.read("level" + i + ".txt");
         System.out.println(arr.length);
     }
