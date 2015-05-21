@@ -16,7 +16,7 @@ public class Controller {
     private final KeyboardModule km = SpaceShipCrawl.km;
     private final MouseModule mm = SpaceShipCrawl.mm;
 
-    private final int[] inputkeys = {KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D,KeyEvent.VK_SPACE};
+    private final int[] inputkeys = {KeyEvent.VK_W, KeyEvent.VK_A, KeyEvent.VK_S, KeyEvent.VK_D};
 
     private boolean shouldMove = true;
     Ship stage = new Ship();
