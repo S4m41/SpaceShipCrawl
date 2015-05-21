@@ -132,7 +132,7 @@ public class Deck {
                         if (i == 0 && j == 0) {
                             continue;
                         }
-                        if (isPassable(p.x + i, p.y + j) && !visited.contains(p)) {
+                        if (isPassable(p.x + i, p.y + j) && !visited.contains(new Point(p.x + i, p.y + j))) {
                             nextSet.add(new Point(p.x + i, p.y + j));
                             for (Entity e : population) {
                                 if (e.getPosition().equals(new Point(p.x + i, p.y + j))) {
