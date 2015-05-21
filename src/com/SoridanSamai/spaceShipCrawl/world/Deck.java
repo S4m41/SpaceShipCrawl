@@ -103,7 +103,7 @@ public class Deck {
 //                ta position
                 Point F = new Point(e1.getPosition());
                 set.add(F);
-                floodfill(set,e);
+                floodfill(set,e1);
                 visited.clear();
             }
             collissions(e1, delta);
