@@ -122,7 +122,6 @@ public class Deck {
     HashSet<Point> visited = new HashSet();
 
     private void floodfill(HashSet<Point> set, Entity e) {
-
         HashSet<Point> nextSet = new HashSet();
         for (Point p : set) {
             if (set.isEmpty() || !isPassable(p.x, p.y)) {
@@ -132,15 +131,11 @@ public class Deck {
                         if (i == 0 && j == 0 || nextSet.contains(new Point(p.x + i, p.y + j))) {
                             continue;
                         }
-                        if (isPassable(p.x + i, p.y + j) && !visited.contains(p)) {
+                        if (isPassable(p.x + i, p.y + j) && !visited.contains(new Point(p.x + i, p.y + j))) {
                             nextSet.add(new Point(p.x + i, p.y + j));
-                            //System.out.println((p.x + i) +","+ (p.y + j));
                             for (Entity e1 : population) {
-                                if (e1 instanceof Player) {
-                                    
-                                    if (e.getPosition().equals(new Point(p.x + i, p.y + j))) {
-                                        e.setTarget(p);
-                                    }
+                                if (e.getPosition().equals(new Point(p.x + i, p.y + j))) {
+                                    e.setTarget(p);
                                 }
                             }
                         }
