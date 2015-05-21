@@ -129,14 +129,14 @@ public class Deck {
 
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
-                        if (i == 0 && j == 0) {
+                        if (i == 0 && j == 0|| nextSet.contains(new Point(p.x + i, p.y + j))) {
                             continue;
                         }
                         if (isPassable(p.x + i, p.y + j) && !visited.contains(new Point(p.x + i, p.y + j))) {
                             nextSet.add(new Point(p.x + i, p.y + j));
                             for (Entity e1 : population) {
-                                if (e.getPosition().equals(new Point(p.x + i, p.y + j))) {
-                                    e.setTarget(p);
+                                if (e1.getPosition().equals(new Point(p.x + i, p.y + j))) {
+                                    e1.setTarget(p);
                                 }
                             }
                         }
