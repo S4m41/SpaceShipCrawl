@@ -3,6 +3,7 @@ package com.SoridanSamai.spaceShipCrawl.world;
 import com.SoridanSamai.spaceShipCrawl.Reference;
 import com.SoridanSamai.spaceShipCrawl.enemies.Entity;
 import com.SoridanSamai.spaceShipCrawl.enemies.Player;
+import com.SoridanSamai.spaceShipCrawl.other.WeightedPoint;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -99,11 +100,11 @@ public class Deck {
         for (int i = 0; i < population.size(); i++) {
             Entity e1 = population.get(i);
 
-            if (!(e1 instanceof Player)) {
+            if (e1 instanceof Player) {
 //                ta position
-                Point F = new Point(e1.getPosition());
+                WeightedPoint F = new WeightedPoint(e1.getPosition());
                 set.add(F);
-                floodfill(set, e1);
+                floodfill(set,0);
                 visited.clear();
             }
             collissions(e1, delta);
@@ -118,23 +119,37 @@ public class Deck {
             e1.updatelastpos();
         }
     }
-    HashSet<Point> set = new HashSet();
-    HashSet<Point> visited = new HashSet();
+    HashSet<WeightedPoint> set = new HashSet();
+    HashSet<WeightedPoint> visited = new HashSet();
 
+<<<<<<< HEAD
     private void floodfill(HashSet<Point> set, Entity e) {
         HashSet<Point> nextSet = new HashSet();
         for (Point p : set) {
+=======
+    private void floodfill(HashSet<WeightedPoint> set,int weight) {
+        HashSet<WeightedPoint> nextSet = new HashSet();
+        for (WeightedPoint p : set) {
+>>>>>>> parent of 06ae7df... sumting vent bum
             if (set.isEmpty() || !isPassable(p.x, p.y)) {
             } else {
+
                 for (int i = -1; i < 2; i++) {
                     for (int j = -1; j < 2; j++) {
-                        if (i == 0 && j == 0 || nextSet.contains(new Point(p.x + i, p.y + j))) {
+                        if (i == 0 && j == 0) {
                             continue;
                         }
+<<<<<<< HEAD
                         if (isPassable(p.x + i, p.y + j) && !visited.contains(new Point(p.x + i, p.y + j))) {
                             nextSet.add(new Point(p.x + i, p.y + j));
                             for (Entity e1 : population) {
                                 if (e.getPosition().equals(new Point(p.x + i, p.y + j))) {
+=======
+                        if (isPassable(p.x + i, p.y + j) && !visited.contains(new WeightedPoint(p.x + i, p.y + j))) {
+                            nextSet.add(new WeightedPoint(p.x + i, p.y + j));
+                            for (Entity e : population) {
+                                if (e.getPosition().equals(new WeightedPoint(p.x + i, p.y + j))) {
+>>>>>>> parent of 06ae7df... sumting vent bum
                                     e.setTarget(p);
                                 }
                             }
@@ -143,7 +158,7 @@ public class Deck {
                 }
 
                 visited.add(p);
-                floodfill(nextSet, e);
+                floodfill(nextSet,weight);
                 nextSet.clear();
             }
         }
